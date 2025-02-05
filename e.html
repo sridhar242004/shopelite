@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopElite - Luxury Electronics</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #1a1a1a;
+            --color-secondary: #d4af37;
+            --color-tertiary: #f5f5f5;
+            --color-text: #333333;
+            --color-text-light: #777777;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--color-tertiary);
+            color: var(--color-text);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--color-primary);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            color: var(--color-secondary);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: var(--color-tertiary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--color-secondary);
+        }
+
+       /* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #d4af37; /* Set a background color instead of image */
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    color:black;
+    max-width: 50%;
+  }
+  
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeInUp 1s forwards;
+  }
+  
+  .hero-subtitle {
+    font-size: 18px;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeInUp 1s 0.3s forwards;
+  }
+  
+  .cta-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeInUp 1s 0.6s forwards;
+  }
+  
+  .cta-button:hover {
+    background-color: var(--color-tertiary);
+  }
+  
+  .hero-video {
+    width: 50%;
+    position: relative;
+  }
+  
+  #video-canvas {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Fade In Animation */
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .hero-wrapper {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .hero-content, .hero-video {
+      width: 100%;
+    }
+  
+    #video-canvas {
+      width: 100%;
+    }
+  }
+  
+
+        .featured-products {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-weight: 600;
+            color: var(--color-secondary);
+        }
+
+        .add-to-cart {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: var(--color-primary);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: var(--transition);
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+        }
+
+        .product-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-overlay {
+            opacity: 1;
+        }
+
+        .quick-view,
+        .add-to-wishlist {
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+            padding: 10px 20px;
+            margin: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .quick-view:hover,
+        .add-to-wishlist:hover {
+            background-color: var(--color-tertiary);
+        }
+
+        .innovation-section {
+            background-color: var(--color-primary);
+            color: var(--color-tertiary);
+            padding: 100px 0;
+        }
+
+        .innovation-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .innovation-image {
+            flex: 1;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .innovation-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .innovation-text {
+            flex: 1;
+        }
+
+        .innovation-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--color-secondary);
+        }
+
+        .innovation-description {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-icon {
+            font-size: 24px;
+            color: var(--color-secondary);
+        }
+
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            z-index: 1001;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .cart-modal.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .close-cart {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--color-text-light);
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 600;
+        }
+
+        .cart-item-price {
+            color: var(--color-secondary);
+        }
+
+        .cart-item-remove {
+            cursor: pointer;
+            color: var(--color-text-light);
+        }
+
+        .cart-total {
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .checkout-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+            text-align: center;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .checkout-button:hover {
+            background-color: var(--color-primary);
+            color: var(--color-secondary);
+        }
+
+        /* New styles for product filtering */
+        .filter-section {
+            margin-bottom: 30px;
+        }
+
+        .filter-options {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-option {
+            padding: 10px 20px;
+            background-color: var(--color-tertiary);
+            border: 1px solid var(--color-text-light);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-option:hover,
+        .filter-option.active {
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+        }
+
+        /* New styles for product reviews */
+        .product-reviews {
+            margin-top: 30px;
+        }
+
+        .review {
+            background-color: var(--color-tertiary);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .review-rating {
+            color: var(--color-secondary);
+        }
+
+        /* New styles for product comparison */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--color-text-light);
+        }
+
+        .comparison-table th {
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+        }
+
+        /* New styles for category pages */
+        .category-header {
+            background-color: var(--color-primary);
+            color: var(--color-tertiary);
+            padding: 100px 0 50px;
+            text-align: center;
+        }
+
+        .category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .category-description {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* New styles for interactive product showcase */
+        .product-showcase {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+            margin-bottom: 50px;
+        }
+
+        .showcase-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .showcase-item.active {
+            opacity: 1;
+        }
+
+        .showcase-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .showcase-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+        }
+
+        .showcase-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .showcase-description {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .showcase-nav {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .showcase-nav-item {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .showcase-nav-item.active {
+            background: var(--color-secondary);
+        }
+
+        .product-viewer {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .product-viewer-container {
+            position: relative;
+            overflow: hidden;
+            height: 300px; /* Adjust based on your image height */
+        }
+        
+        .product-viewer-rotate {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-viewer-item {
+            min-width: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .product-viewer-item.active {
+            opacity: 1;
+        }
+        
+
+        .viewer-nav-btn {
+            background: var(--color-secondary);
+            color: var(--color-primary);
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .viewer-nav-btn:hover {
+            background: var(--color-primary);
+            color: var(--color-secondary);
+        }
+
+        /* New styles for tech specs section */
+        .tech-specs {
+            background: var(--color-tertiary);
+            padding: 50px 0;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .spec-item {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .spec-icon {
+            font-size: 36px;
+            color: var(--color-secondary);
+            margin-bottom: 10px;
+        }
+
+        .spec-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        /* New styles for customer testimonials */
+        .testimonials {
+            padding: 50px 0;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            color: white;
+        }
+
+        .testimonial-slider {
+            position: relative;
+            overflow: hidden;
+            height: 300px;
+        }
+
+        .testimonial-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 50px;
+        }
+
+        .testimonial-item.active {
+            opacity: 1;
+        }
+
+        .testimonial-text {
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 48px;
+            }
+
+            .innovation-content {
+                flex-direction: column;
+            }
+
+            .innovation-image,
+            .innovation-text {
+                flex: auto;
+            }
+
+            .cart-modal {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">ShopElite</a>
+                <nav class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="e.html" class="nav-link">Electronics</a>
+                    <a href="f.html" class="nav-link">Furniture</a>
+                    <a href="bp.html" class="nav-link">Beauty</a>
+                    <a href="b&a.html" class="nav-link">Clothing</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-wrapper">
+              <div class="hero-content">
+                <h1 class="hero-title">Cutting-Edge Electronics</h1>
+                <p class="hero-subtitle">Experience the future with our premium selection of innovative devices.</p>
+                <a href="#featured-products" class="cta-button">Explore Now</a>
+              </div>
+              <div class="hero-video">
+                <video id="video-canvas" autoplay muted loop>
+                  <source src="Untitled video - Made with Clipchamp (2).mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </section>
+          
+
+        <section class="product-showcase">
+            <div class="showcase-item active">
+                <img src="pexels-zeleboba-28902920.jpg" alt="Latest Smartphone" class="showcase-image">
+                <div class="showcase-info">
+                    <h2 class="showcase-title">Revolutionary Smartphone</h2>
+                    <p class="showcase-description">Experience unparalleled performance with our latest flagship device.</p>
+                    <a href="#" class="cta-button">Learn More</a>
+                </div>
+            </div>
+            <div class="showcase-item">
+                <img src="pexels-jakubzerdzicki-18509543.jpg" alt="Smart Home System" class="showcase-image">
+                <div class="showcase-info">
+                    <h2 class="showcase-title">Intelligent Home Ecosystem</h2>
+                    <p class="showcase-description">Transform your living space with our integrated smart home solutions.</p>
+                    <a href="#" class="cta-button">Discover</a>
+                </div>
+            </div>
+            <div class="showcase-item">
+                <img src="pexels-tdcat-437037.jpg" alt="Wearable Tech" class="showcase-image">
+                <div class="showcase-info">
+                    <h2 class="showcase-title">Next-Gen Wearables</h2>
+                    <p class="showcase-description">Stay connected and monitor your health with our advanced wearable technology.</p>
+                    <a href="#" class="cta-button">Explore</a>
+                </div>
+            </div>
+            <div class="showcase-nav">
+                <span class="showcase-nav-item active"></span>
+                <span class="showcase-nav-item"></span>
+                <span class="showcase-nav-item"></span>
+            </div>
+        </section>
+
+        <section id="featured-products" class="featured-products">
+            <div class="container">
+                <h2 class="section-title">Featured Products</h2>
+                <div class="filter-section">
+                    <h3>Filter By:</h3>
+                    <div class="filter-options">
+                        <span class="filter-option active" data-filter="all">All</span>
+                        <span class="filter-option" data-filter="smartphone">Smartphones</span>
+                        <span class="filter-option" data-filter="laptop">Laptops</span>
+                        <span class="filter-option" data-filter="audio">Audio</span>
+                        <span class="filter-option" data-filter="wearable">Wearables</span>
+                    </div>
+                </div>
+                <div class="product-grid">
+                    <div class="product-card" data-category="smartphone">
+                        <div class="product-image">
+                            <img src="pexels-rohit-sharma-1230131-20895993.jpg" alt="Premium Smartphone">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">ElitePhone Pro</h3>
+                            <p class="product-price">$999.99</p>
+                            <a href="#" class="add-to-cart">Add to Cart</a>
+                        </div>
+                        <div class="product-overlay">
+                            <a href="#" class="quick-view">Quick View</a>
+                            <a href="#" class="add-to-wishlist">Add to Wishlist</a>
+                        </div>
+                    </div>
+                    <div class="product-card" data-category="laptop">
+                        <div class="product-image">
+                            <img src="OIP.jpg" alt="High-Performance Laptop">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">UltraBook Elite</h3>
+                            <p class="product-price">$1,499.99</p>
+                            <a href="#" class="add-to-cart">Add to Cart</a>
+                        </div>
+                        <div class="product-overlay">
+                            <a href="#" class="quick-view">Quick View</a>
+                            <a href="#" class="add-to-wishlist">Add to Wishlist</a>
+                        </div>
+                    </div>
+                    <div class="product-card" data-category="audio">
+                        <div class="product-image">
+                            <img src="pexels-cottonbro-6889216.jpg" alt="Wireless Earbuds">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">SoundPods X</h3>
+                            <p class="product-price">$249.99</p>
+                            <a href="#" class="add-to-cart">Add to Cart</a>
+                        </div>
+                        <div class="product-overlay">
+                            <a href="#" class="quick-view">Quick View</a>
+                            <a href="#" class="add-to-wishlist">Add to Wishlist</a>
+                        </div>
+                    </div>
+                    <div class="product-card" data-category="wearable">
+                        <div class="product-image">
+                            <img src="OIP (1).jpg" alt="Smart Watch">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">LifeTrack Pro</h3>
+                            <p class="product-price">$349.99</p>
+                            <a href="#" class="add-to-cart">Add to Cart</a>
+                        </div>
+                        <div class="product-overlay">
+                            <a href="#" class="quick-view">Quick View</a>
+                            <a href="#" class="add-to-wishlist">Add to Wishlist</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="product-viewer">
+            <div class="container">
+                <h2 class="section-title">Experience the ElitePhone Pro</h2>
+                <div class="product-viewer-container">
+                    <div class="product-viewer-rotate">
+                        <div class="product-viewer-item active">
+                            <img src="OIP (2).jpg" alt="ElitePhone Pro - Front">
+                        </div>
+                        <div class="product-viewer-item">
+                            <img src="Realme-GT-Master-Edition-back.jpg" alt="ElitePhone Pro - Back">
+                        </div>
+                        <div class="product-viewer-item">
+                            <img src="OIP (3).jpg" alt="ElitePhone Pro - Side">
+                        </div>
+                    </div>
+                </div>
+                <div class="product-viewer-nav">
+                    <button class="viewer-nav-btn" id="rotate-left">Rotate Left</button>
+                    <button class="viewer-nav-btn" id="rotate-right">Rotate Right</button>
+                </div>
+            </div>
+        </section>
+        
+
+        <section class="tech-specs">
+            <div class="container">
+                <h2 class="section-title">Technical Specifications</h2>
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <i class="fas fa-microchip spec-icon"></i>
+                        <h3 class="spec-title">Processor</h3>
+                        <p>Octa-core 3.0 GHz</p>
+                    </div>
+                    <div class="spec-item">
+                        <i class="fas fa-memory spec-icon"></i>
+                        <h3 class="spec-title">RAM</h3>
+                        <p>12GB LPDDR5</p>
+                    </div>
+                    <div class="spec-item">
+                        <i class="fas fa-hdd spec-icon"></i>
+                        <h3 class="spec-title">Storage</h3>
+                        <p>256GB UFS 3.1</p>
+                    </div>
+                    <div class="spec-item">
+                        <i class="fas fa-camera spec-icon"></i>
+                        <h3 class="spec-title">Camera</h3>
+                        <p>108MP Main + 12MP Ultra-wide</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <div class="container">
+                <h2 class="section-title">What Our Customers Say</h2>
+                <div class="testimonial-slider">
+                    <div class="testimonial-item active">
+                        <p class="testimonial-text">"The ElitePhone Pro has completely transformed the way I work and communicate. It's not just a phone, it's a powerhouse of productivity."</p>
+                        <p class="testimonial-author">- Sarah J., Tech Entrepreneur</p>
+                    </div>
+                    <div class="testimonial-item">
+                        <p class="testimonial-text">"I've never experienced such seamless integration between my devices. ShopElite's ecosystem is truly next-level."</p>
+                        <p class="testimonial-author">- Michael R., Digital Nomad</p>
+                    </div>
+                    <div class="testimonial-item">
+                        <p class="testimonial-text">"The customer service at ShopElite is unparalleled. They went above and beyond to ensure I had the perfect setup for my needs."</p>
+                        <p class="testimonial-author">- Emily T., Content Creator</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <!-- Footer content remains the same as in the original file -->
+    </footer>
+
+    <div class="cart-modal">
+        <!-- Cart modal content remains the same as in the original file -->
+    </div>
+
+    <script>
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.backgroundColor = 'rgba(26, 26, 26, 0.9)';
+            } else {
+                header.style.backgroundColor = 'var(--color-primary)';
+            }
+        });
+
+        // Product filtering
+        const filterOptions = document.querySelectorAll('.filter-option');
+        const productCards = document.querySelectorAll('.product-card');
+
+filterOptions.forEach(option => {
+    option.addEventListener('click', function() {
+        const filter = this.getAttribute('data-filter');
+        
+        filterOptions.forEach(opt => opt.classList.remove('active'));
+        this.classList.add('active');
+        
+        productCards.forEach(card => {
+            if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+});
+
+// Interactive product showcase
+const showcaseItems = document.querySelectorAll('.showcase-item');
+const showcaseNavItems = document.querySelectorAll('.showcase-nav-item');
+let currentShowcaseItem = 0;
+
+function showShowcaseItem(index) {
+    showcaseItems.forEach(item => item.classList.remove('active'));
+    showcaseNavItems.forEach(item => item.classList.remove('active'));
+    
+    showcaseItems[index].classList.add('active');
+    showcaseNavItems[index].classList.add('active');
+}
+
+showcaseNavItems.forEach((item, index) => {
+    item.addEventListener('click', () => {
+        currentShowcaseItem = index;
+        showShowcaseItem(currentShowcaseItem);
+    });
+});
+
+setInterval(() => {
+    currentShowcaseItem = (currentShowcaseItem + 1) % showcaseItems.length;
+    showShowcaseItem(currentShowcaseItem);
+}, 5000);
+
+let currentIndex = 0;
+const items = document.querySelectorAll('.product-viewer-item');
+
+function showItem(index) {
+    items.forEach((item, i) => {
+        item.classList.remove('active');
+        if (i === index) {
+            item.classList.add('active');
+        }
+    });
+}
+
+document.getElementById('rotate-left').addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + items.length) % items.length;
+    showItem(currentIndex);
+});
+
+document.getElementById('rotate-right').addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % items.length;
+    showItem(currentIndex);
+});
+
+// Show the first item initially
+showItem(currentIndex);
+
+// Testimonial slider
+const testimonialItems = document.querySelectorAll('.testimonial-item');
+let currentTestimonial = 0;
+
+function showTestimonial(index) {
+    testimonialItems.forEach(item => item.classList.remove('active'));
+    testimonialItems[index].classList.add('active');
+}
+
+setInterval(() => {
+    currentTestimonial = (currentTestimonial + 1) % testimonialItems.length;
+    showTestimonial(currentTestimonial);
+}, 5000);
+
+// Cart functionality
+const cartModal = document.querySelector('.cart-modal');
+const addToCartButtons = document.querySelectorAll('.add-to-cart');
+const closeCartButton = document.querySelector('.close-cart');
+const cartItemsContainer = document.querySelector('.cart-items');
+const cartTotal = document.querySelector('.cart-total');
+
+let cart = [];
+
+addToCartButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+        const card = button.closest('.product-card');
+        const product = {
+            name: card.querySelector('.product-title').textContent,
+            price: parseFloat(card.querySelector('.product-price').textContent.replace('$', '')),
+            image: card.querySelector('.product-image img').src
+        };
+        
+        addToCart(product);
+        updateCartUI();
+        openCart();
+    });
+});
+
+closeCartButton.addEventListener('click', closeCart);
+
+function addToCart(product) {
+    cart.push(product);
+}
+
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCartUI();
+}
+
+function updateCartUI() {
+    cartItemsContainer.innerHTML = '';
+    let total = 0;
+    
+    cart.forEach((item, index) => {
+        const cartItem = document.createElement('div');
+        cartItem.classList.add('cart-item');
+        cartItem.innerHTML = `
+            <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+            <div class="cart-item-details">
+                <h4 class="cart-item-title">${item.name}</h4>
+                <p class="cart-item-price">$${item.price.toFixed(2)}</p>
+            </div>
+            <span class="cart-item-remove" data-index="${index}">&times;</span>
+        `;
+        cartItemsContainer.appendChild(cartItem);
+        total += item.price;
+    });
+    
+    cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+    
+    document.querySelectorAll('.cart-item-remove').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const index = parseInt(e.target.getAttribute('data-index'));
+            removeFromCart(index);
+        });
+    });
+}
+
+function openCart() {
+    cartModal.classList.add('active');
+}
+
+function closeCart() {
+    cartModal.classList.remove('active');
+}
+
+// Quick view functionality
+const quickViewButtons = document.querySelectorAll('.quick-view');
+
+quickViewButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+        const card = button.closest('.product-card');
+        const product = {
+            name: card.querySelector('.product-title').textContent,
+            price: card.querySelector('.product-price').textContent,
+            image: card.querySelector('.product-image img').src
+        };
+        
+        showQuickView(product);
+    });
+});
+
+function showQuickView(product) {
+    const quickViewModal = document.createElement('div');
+    quickViewModal.classList.add('quick-view-modal');
+    quickViewModal.innerHTML = `
+        <div class="quick-view-content">
+            <button class="close-quick-view">&times;</button>
+            <img src="${product.image}" alt="${product.name}" class="quick-view-image">
+            <h3 class="quick-view-title">${product.name}</h3>
+            <p class="quick-view-price">${product.price}</p>
+            <button class="quick-view-add-to-cart">Add to Cart</button>
+        </div>
+    `;
+    
+    document.body.appendChild(quickViewModal);
+    
+    quickViewModal.querySelector('.close-quick-view').addEventListener('click', () => {
+        document.body.removeChild(quickViewModal);
+    });
+    
+    quickViewModal.querySelector('.quick-view-add-to-cart').addEventListener('click', () => {
+        addToCart(product);
+        updateCartUI();
+        openCart();
+        document.body.removeChild(quickViewModal);
+    });
+}
+
+// Initialize the page
+updateCartUI();
+</script>
+</body>
+</html>

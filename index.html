@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopElite - Luxury Shopping Experience</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #1a1a1a;
+            --color-secondary: #d4af37;
+            --color-tertiary: #f5f5f5;
+            --color-text: #333333;
+            --color-text-light: #777777;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--color-tertiary);
+            color: var(--color-text);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--color-primary);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            color: var(--color-secondary);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: var(--color-tertiary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--color-secondary);
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #d4af37;
+            position: relative;
+            overflow: hidden;
+            padding: 20px;
+          }
+          
+          .hero-wrapper {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            box-sizing: border-box;
+          }
+          
+          .hero-content {
+            width: 50%;
+            z-index: 1;
+            color: black;
+          }
+          
+          .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            margin-bottom: 20px;
+          }
+          
+          .hero-subtitle {
+            font-size: 18px;
+            margin-bottom: 40px;
+          }
+          
+          .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+          }
+          
+          .cta-button:hover {
+            background-color: var(--color-tertiary);
+          }
+          
+          .hero-video {
+            width: 50%;
+          }
+          
+          #video-canvas {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+          }
+          
+          /* Mobile Responsive */
+          @media (max-width: 768px) {
+            .hero-wrapper {
+              flex-direction: column;
+              align-items: center;
+            }
+          
+            .hero-content, .hero-video {
+              width: 100%;
+            }
+          
+            #video-canvas {
+              width: 100%;
+            }
+          }
+
+        .featured-products {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-weight: 600;
+            color: var(--color-secondary);
+        }
+
+        .add-to-cart {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: var(--color-primary);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: var(--transition);
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+        }
+
+        .product-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-overlay {
+            opacity: 1;
+        }
+
+        .quick-view,
+        .add-to-wishlist {
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+            padding: 10px 20px;
+            margin: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .quick-view:hover,
+        .add-to-wishlist:hover {
+            background-color: var(--color-tertiary);
+        }
+
+        .innovation-section {
+            background-color: var(--color-primary);
+            color: var(--color-tertiary);
+            padding: 100px 0;
+        }
+
+        .innovation-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .innovation-image {
+            flex: 1;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .innovation-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .innovation-text {
+            flex: 1;
+        }
+
+        .innovation-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--color-secondary);
+        }
+
+        .innovation-description {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-icon {
+            font-size: 24px;
+            color: var(--color-secondary);
+        }
+
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            z-index: 1001;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .cart-modal.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .close-cart {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--color-text-light);
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 600;
+        }
+
+        .cart-item-price {
+            color: var(--color-secondary);
+        }
+
+        .cart-item-remove {
+            cursor: pointer;
+            color: var(--color-text-light);
+        }
+
+        .cart-total {
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .checkout-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+            text-align: center;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .checkout-button:hover {
+            background-color: var(--color-primary);
+            color: var(--color-secondary);
+        }
+
+        /* New styles for product filtering */
+        .filter-section {
+            margin-bottom: 30px;
+        }
+
+        .filter-options {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-option {
+            padding: 10px 20px;
+            background-color: var(--color-tertiary);
+            border: 1px solid var(--color-text-light);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-option:hover,
+        .filter-option.active {
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+        }
+
+        /* New styles for product reviews */
+        .product-reviews {
+            margin-top: 30px;
+        }
+
+        .review {
+            background-color: var(--color-tertiary);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .review-rating {
+            color: var(--color-secondary);
+        }
+
+        /* New styles for product comparison */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--color-text-light);
+        }
+
+        .comparison-table th {
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+        }
+
+        /* New styles for category pages */
+        .category-header {
+            background-color: var(--color-primary);
+            color: var(--color-tertiary);
+            padding: 100px 0 50px;
+            text-align: center;
+        }
+
+        .category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .category-description {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 48px;
+            }
+
+            .innovation-content {
+                flex-direction: column;
+            }
+
+            .innovation-image,
+            .innovation-text {
+                flex: auto;
+            }
+
+            .cart-modal {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        footer {
+            background-color: var(--color-primary);
+            color: var(--color-tertiary);
+            padding: 50px 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--color-secondary);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: var(--color-tertiary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--color-secondary);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">ShopElite</a>
+                <nav class="nav-links">
+                    <a href="#" class="nav-link">Home</a>
+                    <a href="e.html" class="nav-link">Electronics</a>
+                    <a href="f.html" class="nav-link">Furniture</a>
+                    <a href="bp.html" class="nav-link">Beauty</a>
+                    <a href="b&a.html" class="nav-link">Clothing</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-wrapper">
+              <div class="hero-content">
+                <h1 class="hero-title">Elevate Your Lifestyle</h1>
+                <p class="hero-subtitle">Discover our curated collection of premium products for the discerning individual.</p>
+                <a href="#" class="cta-button">Shop Now</a>
+              </div>
+              <div class="hero-video">
+                <video id="video-canvas" autoplay muted loop>
+                  <source src="Untitled video - Made with Clipchamp (1).mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </section>
+
+        <section class="featured-products">
+            <div class="container">
+                <h2 class="section-title">Featured Products</h2>
+                <div class="filter-section">
+                    <h3>Filter By:</h3>
+                    <div class="filter-options">
+                        <span class="filter-option active" data-filter="all">All</span>
+                        <span class="filter-option" data-filter="electronics">Electronics</span>
+                        <span class="filter-option" data-filter="furniture">Furniture</span>
+                        <span class="filter-option" data-filter="beauty">Beauty</span>
+                        <span class="filter-option" data-filter="clothing">Clothing</span>
+                    </div>
+                </div>
+                <div class="product-grid">
+                    <div class="product-card" data-category="electronics">
+                        <div class="product-image">
+                            <img src="pexels-rohit-sharma-1230131-27596328.jpg" alt="Premium Smartphone">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Premium Smartphone</h3>
+                            <p class="product-price">$999.99</p>
+                            <a href="#" class="add-to-cart">Add to Cart</a>
+                        </div>
+                        <div class="product-overlay">
+                            <a href="#" class="quick-view">Quick View</a>
+                            <a href="#" class="add-to-wishlist">Add to Wishlist</a>
+                        </div>
+                    </div>
+                    <div class="product-card" data-category="furniture">
+                        <div class="product-image">
+                            <img src="pexels-karolina-grabowska-5942509.jpg" alt="Luxe Leather Sofa">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Luxe Leather Sofa</h3>
+                            <p class="product-price">$2,499.99</p>
+                            <a href="#" class="add-to-cart">Add to Cart</a>
+                        </div>
+                        <div class="product-overlay">
+                            <a href="#" class="quick-view">Quick View</a>
+                            <a href="#" class="add-to-wishlist">Add to Wishlist</a>
+                        </div>
+                    </div>
+                    <div class="product-card" data-category="beauty">
+                        <div class="product-image">
+                            <img src="pexels-karolina-grabowska-4202325.jpg" alt="Premium Skincare Set">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Premium Skincare Set</h3>
+                            <p class="product-price">$299.99</p>
+                            <a href="#" class="add-to-cart">Add to Cart</a>
+                        </div>
+                        <div class="product-overlay">
+                            <a href="#" class="quick-view">Quick View</a>
+                            <a href="#" class="add-to-wishlist">Add to Wishlist</a>
+                        </div>
+                    </div>
+                    <div class="product-card" data-category="clothing">
+                        <div class="product-image">
+                            <img src="pexels-rachel-claire-6752352.jpg" alt="Designer Evening Gown">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Designer Evening Gown</h3>
+                            <p class="product-price">$1,299.99</p>
+                            <a href="#" class="add-to-cart">Add to Cart</a>
+                        </div>
+                        <div class="product-overlay">
+                            <a href="#" class="quick-view">Quick View</a>
+                            <a href="#" class="add-to-wishlist">Add to Wishlist</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="innovation-section">
+            <div class="container">
+                <div class="innovation-content">
+                    <div class="innovation-image">
+                        <img src="innovative-technology-2-1024x640.jpg" alt="Innovative Technology">
+                    </div>
+                    <div class="innovation-text">
+                        <h2 class="innovation-title">Cutting-Edge Innovation</h2>
+                        <p class="innovation-description">Experience the future of luxury with our curated selection of innovative products. We bring you the latest advancements in technology and design, offering unparalleled performance and seamless integration into your lifestyle.</p>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <i class="fas fa-microchip feature-icon"></i>
+                                <span>Advanced AI Integration</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-palette feature-icon"></i>
+                                <span>Cutting-edge Design</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-shield-alt feature-icon"></i>
+                                <span>Enhanced Security Features</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-leaf feature-icon"></i>
+                                <span>Eco-friendly Materials</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Shop Categories</h3>
+                    <ul>
+                        <li><a href="#">Electronics</a></li>
+                        <li><a href="#">Furniture</a></li>
+                        <li><a href="#">Beauty</a></li>
+                        <li><a href="#">Clothing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">VIP Concierge</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>About ShopElite</h3>
+                    <ul>
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Stay Connected</h3>
+                    <p>Subscribe to our newsletter for exclusive offers and luxury insights.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="cart-modal">
+        <div class="cart-header">
+            <h3>Your Shopping Bag</h3>
+            <span class="close-cart">&times;</span>
+        </div>
+        <div class="cart-items">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        <div class="cart-total">
+            Total: $<span id="cart-total-amount">0.00</span>
+        </div>
+        <a href="#" class="checkout-button">Proceed to Checkout</a>
+    </div>
+
+    <script>
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.backgroundColor = 'rgba(26, 26, 26, 0.9)';
+            } else {
+                header.style.backgroundColor = 'var(--color-primary)';
+            }
+        });
+
+        // Product filtering
+        const filterOptions = document.querySelectorAll('.filter-option');
+        const productCards = document.querySelectorAll('.product-card');
+
+        filterOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                const filter = this.dataset.filter;
+                
+                filterOptions.forEach(opt => opt.classList.remove('active'));
+                this.classList.add('active');
+
+                productCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Cart functionality
+        const cartModal = document.querySelector('.cart-modal');
+        const closeCart = document.querySelector('.close-cart');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        const cartItems = document.querySelector('.cart-items');
+        const cartTotalAmount = document.getElementById('cart-total-amount');
+        let cartTotal = 0;
+
+        // Open cart modal
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const productCard = this.closest('.product-card');
+                const productName = productCard.querySelector('.product-title').textContent;
+                const productPrice = parseFloat(productCard.querySelector('.product-price').textContent.replace('$', ''));
+                const productImage = productCard.querySelector('.product-image img').src;
+
+                addToCart(productName, productPrice, productImage);
+                cartModal.classList.add('active');
+            });
+        });
+
+        // Close cart modal
+        closeCart.addEventListener('click', () => {
+            cartModal.classList.remove('active');
+        });
+
+        // Add item to cart
+        function addToCart(name, price, image) {
+            const cartItem = document.createElement('div');
+            cartItem.classList.add('cart-item');
+            cartItem.innerHTML = `
+                <img src="${image}" alt="${name}" class="cart-item-image">
+                <div class="cart-item-details">
+                    <h4 class="cart-item-title">${name}</h4>
+                    <p class="cart-item-price">$${price.toFixed(2)}</p>
+                </div>
+                <span class="cart-item-remove">&times;</span>
+            `;
+
+            cartItems.appendChild(cartItem);
+            updateCartTotal(price);
+
+            // Remove item from cart
+            cartItem.querySelector('.cart-item-remove').addEventListener('click', () => {
+                cartItem.remove();
+                updateCartTotal(-price);
+            });
+        }
+
+        // Update cart total
+        function updateCartTotal(amount) {
+            cartTotal += amount;
+            cartTotalAmount.textContent = cartTotal.toFixed(2);
+        }
+
+        // Quick view functionality (you can expand this to show a modal with more product details)
+        const quickViewButtons = document.querySelectorAll('.quick-view');
+        quickViewButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const productName = this.closest('.product-card').querySelector('.product-title').textContent;
+                alert(`Quick view for ${productName}`);
+            });
+        });
+
+        // Add to wishlist functionality (you can expand this to actually save items to a wishlist)
+        const wishlistButtons = document.querySelectorAll('.add-to-wishlist');
+        wishlistButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const productName = this.closest('.product-card').querySelector('.product-title').textContent;
+                alert(`${productName} added to wishlist`);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopElite - Luxury Furniture</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #1a1a1a;
+            --color-secondary: #d4af37;
+            --color-tertiary: #f5f5f5;
+            --color-text: #333333;
+            --color-text-light: #777777;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--color-tertiary);
+            color: var(--color-text);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--color-primary);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            color: var(--color-secondary);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: var(--color-tertiary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--color-secondary);
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #d4af37;
+            position: relative;
+            overflow: hidden;
+            padding: 20px;
+          }
+          
+          .hero-wrapper {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            box-sizing: border-box;
+          }
+          
+          .hero-content {
+            width: 50%;
+            z-index: 1;
+            color: black;
+          }
+          
+          .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            margin-bottom: 20px;
+          }
+          
+          .hero-subtitle {
+            font-size: 18px;
+            margin-bottom: 40px;
+          }
+          
+          .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+          }
+          
+          .cta-button:hover {
+            background-color: var(--color-tertiary);
+          }
+          
+          .hero-video {
+            width: 50%;
+          }
+          
+          #video-canvas {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+          }
+          
+          /* Mobile Responsive */
+          @media (max-width: 768px) {
+            .hero-wrapper {
+              flex-direction: column;
+              align-items: center;
+            }
+          
+            .hero-content, .hero-video {
+              width: 100%;
+            }
+          
+            #video-canvas {
+              width: 100%;
+            }
+          }
+
+        .featured-products {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-weight: 600;
+            color: var(--color-secondary);
+        }
+
+        .add-to-cart {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: var(--color-primary);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: var(--transition);
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+        }
+
+        .product-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-overlay {
+            opacity: 1;
+        }
+
+        .quick-view,
+        .add-to-wishlist {
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+            padding: 10px 20px;
+            margin: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .quick-view:hover,
+        .add-to-wishlist:hover {
+            background-color: var(--color-tertiary);
+        }
+
+        .room-inspiration {
+            background-color: var(--color-primary);
+            color: var(--color-tertiary);
+            padding: 100px 0;
+        }
+
+        .room-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .room-card {
+            position: relative;
+            overflow: hidden;
+            height: 400px;
+        }
+
+        .room-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .room-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+
+        .room-card:hover .room-overlay {
+            transform: translateY(0);
+        }
+
+        .room-card:hover .room-image {
+            transform: scale(1.1);
+        }
+
+        .room-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .room-description {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .shop-room {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .shop-room:hover {
+            background-color: var(--color-tertiary);
+        }
+
+        .custom-furniture {
+            padding: 100px 0;
+            background-color: var(--color-tertiary);
+        }
+
+        .custom-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .custom-image {
+            flex: 1;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .custom-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .custom-text {
+            flex: 1;
+        }
+
+        .custom-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .custom-description {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .custom-cta {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .custom-cta:hover {
+            background-color: var(--color-primary);
+            color: var(--color-secondary);
+        }
+
+        footer {
+            background-color: var(--color-primary);
+            color: var(--color-tertiary);
+            padding: 50px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-column {
+            flex: 1;
+            margin-right: 30px;
+        }
+
+        .footer-column h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .footer-column ul {
+            list-style-type: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: var(--color-tertiary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--color-secondary);
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+        }
+
+        .newsletter-form button {
+            padding: 10px 20px;
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-form button:hover {
+            background-color: var(--color-tertiary);
+        }
+
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            z-index: 1001;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .cart-modal.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .close-cart {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--color-text-light);
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 600;
+        }
+
+        .cart-item-price {
+            color: var(--color-secondary);
+        }
+
+        .cart-item-remove {
+            cursor: pointer;
+            color: var(--color-text-light);
+        }
+
+        .cart-total {
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .checkout-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+            text-align: center;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .checkout-button:hover {
+            background-color: var(--color-primary);
+            color: var(--color-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 48px;
+            }
+
+            .room-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .custom-content {
+                flex-direction: column;
+            }
+
+            .custom-image,
+            .custom-text {
+                flex: auto;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+
+            .footer-column {
+                margin-right: 0;
+                margin-bottom: 30px;
+            }
+
+            .cart-modal {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">ShopElite</a>
+                <nav class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="e.html" class="nav-link">Electronics</a>
+                    <a href="f.html" class="nav-link">Furniture</a>
+                    <a href="bp.html" class="nav-link">Beauty</a>
+                    <a href="b&a.html" class="nav-link">Clothing</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-wrapper">
+              <div class="hero-content">
+                <h1 class="hero-title">Luxury Furniture</h1>
+                <p class="hero-subtitle">Transform your space with our exquisite collection of premium furniture.</p>
+                <a href="#" class="cta-button">Explore Collection</a>
+              </div>
+              <div class="hero-video">
+                <video id="video-canvas" autoplay muted loop>
+                  <source src="8580866-hd_1920_1080_30fps.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </section>
+
+        <section id="featured-products" class="featured-products">
+            <div class="container">
+                <h2 class="section-title">Featured Pieces</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="pexels-matvalina-18060230.jpg" alt="Luxe Leather Sofa">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Luxe Leather Sofa</h3>
+                            <p class="product-price">$2,499.99</p>
+                            <a href="#" class="add-to-cart">Add to Cart</a>
+                        </div>
+                        <div class="product-overlay">
+                            <a href="#" class="quick-view">Quick View</a>
+                            <a href="#" class="add-to-wishlist">Add to Wishlist</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="pexels-eugenia-remark-5767088-18977897.jpg" alt="Modern Dining Set">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Modern Dining Set</h3>
+                            <p class="product-price">$1,899.99</p>
+                            <a href="#" class="add-to-cart">Add to Cart</a>
+                        </div>
+                        <div class="product-overlay">
+                            <a href="#" class="quick-view">Quick View</a>
+                            <a href="#" class="add-to-wishlist">Add to Wishlist</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="pexels-eugenia-remark-5767088-17795999.jpg" alt="Elegant Bed Frame">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Elegant Bed Frame</h3>
+                            <p class="product-price">$1,299.99</p>
+                            <a href="#" class="add-to-cart">Add to Cart</a>
+                        </div>
+                        <div class="product-overlay">
+                            <a href="#" class="quick-view">Quick View</a>
+                            <a href="#" class="add-to-wishlist">Add to Wishlist</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="room-inspiration">
+            <div class="container">
+                <h2 class="section-title">Room Inspiration</h2>
+                <div class="room-grid">
+                    <div class="room-card">
+                        <img src="pexels-ilya-shakir-1278798-2440471.jpg" alt="Living Room" class="room-image">
+                        <div class="room-overlay">
+                            <h3 class="room-title">Modern Living Room</h3>
+                            <p class="room-description">Create a sleek and comfortable living space with our curated selection.</p>
+                            <a href="#" class="shop-room">Shop This Room</a>
+                        </div>
+                    </div>
+                    <div class="room-card">
+                        <img src="pexels-falling4utah-1080696.jpg" alt="Dining Room" class="room-image">
+                        <div class="room-overlay">
+                            <h3 class="room-title">Elegant Dining Room</h3>
+                            <p class="room-description">Elevate your dining experience with our sophisticated furniture.</p>
+                            <a href="#" class="shop-room">Shop This Room</a>
+                        </div>
+                    </div>
+                    <div class="room-card">
+                        <img src="pexels-monica-1034584.jpg" alt="Bedroom" class="room-image">
+                        <div class="room-overlay">
+                            <h3 class="room-title">Luxurious Bedroom</h3>
+                            <p class="room-description">Transform your bedroom into a tranquil retreat with our premium pieces.</p>
+                            <a href="#" class="shop-room">Shop This Room</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="custom-furniture">
+            <div class="container">
+                <div class="custom-content">
+                    <div class="custom-image">
+                        <img src="pexels-tima-miroshnichenko-6790066.jpg" alt="Custom Furniture">
+                    </div>
+                    <div class="custom-text">
+                        <h2 class="custom-title">Custom Furniture Design</h2>
+                        <p class="custom-description">Create bespoke pieces tailored to your unique style and space. Our expert craftsmen will bring your vision to life with meticulous attention to detail and premium materials.</p>
+                        <a href="#" class="custom-cta">Start Your Custom Project</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Shop Categories</h3>
+                    <ul>
+                        <li><a href="#">Living Room</a></li>
+                        <li><a href="#">Dining Room</a></li>
+                        <li><a href="#">Bedroom</a></li>
+                        <li><a href="#">Office</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Care & Maintenance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>About ShopElite</h3>
+                    <ul>
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Showrooms</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Stay Connected</h3>
+                    <p>Subscribe to our newsletter for exclusive offers and design inspiration.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="cart-modal">
+        <div class="cart-header">
+            <h3>Your Shopping Bag</h3>
+            <span class="close-cart">&times;</span>
+        </div>
+        <div class="cart-items">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        <div class="cart-total">
+            Total: $<span id="cart-total-amount">0.00</span>
+        </div>
+        <a href="#" class="checkout-button">Proceed to Checkout</a>
+    </div>
+
+    <script>
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.backgroundColor = 'rgba(26, 26, 26, 0.9)';
+            } else {
+                header.style.backgroundColor = 'var(--color-primary)';
+            }
+        });
+
+        // Cart functionality
+        const cartModal = document.querySelector('.cart-modal');
+        const closeCart = document.querySelector('.close-cart');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        const cartItems = document.querySelector('.cart-items');
+        const cartTotalAmount = document.getElementById('cart-total-amount');
+        let cartTotal = 0;
+
+        // Open cart modal
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const productCard = this.closest('.product-card');
+                const productName = productCard.querySelector('.product-title').textContent;
+                const productPrice = parseFloat(productCard.querySelector('.product-price').textContent.replace('$', ''));
+                const productImage = productCard.querySelector('.product-image img').src;
+
+                addToCart(productName, productPrice, productImage);
+                cartModal.classList.add('active');
+            });
+        });
+
+        // Close cart modal
+        closeCart.addEventListener('click', () => {
+            cartModal.classList.remove('active');
+        });
+
+        // Add item to cart
+        function addToCart(name, price, image) {
+            const cartItem = document.createElement('div');
+            cartItem.classList.add('cart-item');
+            cartItem.innerHTML = `
+                <img src="${image}" alt="${name}" class="cart-item-image">
+                <div class="cart-item-details">
+                    <h4 class="cart-item-title">${name}</h4>
+                    <p class="cart-item-price">$${price.toFixed(2)}</p>
+                </div>
+                <span class="cart-item-remove">&times;</span>
+            `;
+
+            cartItems.appendChild(cartItem);
+            updateCartTotal(price);
+
+            // Remove item from cart
+            cartItem.querySelector('.cart-item-remove').addEventListener('click', () => {
+                cartItem.remove();
+                updateCartTotal(-price);
+            });
+        }
+
+        // Update cart total
+        function updateCartTotal(amount) {
+            cartTotal += amount;
+            cartTotalAmount.textContent = cartTotal.toFixed(2);
+        }
+
+        // Quick view functionality (you can expand this to show a modal with more product details)
+        const quickViewButtons = document.querySelectorAll('.quick-view');
+        quickViewButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const productName = this.closest('.product-card').querySelector('.product-title').textContent;
+                alert(`Quick view for ${productName}`);
+            });
+        });
+
+        // Add to wishlist functionality (you can expand this to actually save items to a wishlist)
+        const wishlistButtons = document.querySelectorAll('.add-to-wishlist');
+        wishlistButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const productName = this.closest('.product-card').querySelector('.product-title').textContent;
+                alert(`${productName} added to wishlist`);
+            });
+        });
+    </script>
+</body>
+</html>

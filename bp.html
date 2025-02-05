@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopElite - Luxury Beauty Experience</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #1a1a1a;
+            --color-secondary: #d4af37;
+            --color-tertiary: #f5f5f5;
+            --color-text: #333333;
+            --color-text-light: #777777;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--color-tertiary);
+            color: var(--color-text);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--color-primary);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            color: var(--color-secondary);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: var(--color-tertiary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--color-secondary);
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #d4af37; /* Set a background color instead of image */
+            position: relative;
+            overflow: hidden;
+          }
+          
+          .hero-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 20px;
+          }
+          
+          .hero-content {
+            position: relative;
+            z-index: 1;
+            color:black;
+            max-width: 50%;
+          }
+          
+          .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s forwards;
+          }
+          
+          .hero-subtitle {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s 0.3s forwards;
+          }
+          
+          .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s 0.6s forwards;
+          }
+          
+          .cta-button:hover {
+            background-color: var(--color-tertiary);
+          }
+          
+          .hero-video {
+            width: 50%;
+            position: relative;
+          }
+          
+          #video-canvas {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+          }
+          
+          /* Fade In Animation */
+          @keyframes fadeInUp {
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+          
+          /* Mobile Responsive */
+          @media (max-width: 768px) {
+            .hero-wrapper {
+              flex-direction: column;
+              align-items: center;
+              text-align: center;
+            }
+          
+            .hero-content, .hero-video {
+              width: 100%;
+            }
+          
+            #video-canvas {
+              width: 100%;
+            }
+          }
+          
+
+        .featured-products {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-weight: 600;
+            color: var(--color-secondary);
+        }
+
+        .add-to-cart {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: var(--color-primary);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: var(--transition);
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+        }
+
+        .product-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-overlay {
+            opacity: 1;
+        }
+
+        .quick-view,
+        .add-to-wishlist {
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+            padding: 10px 20px;
+            margin: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .quick-view:hover,
+        .add-to-wishlist:hover {
+            background-color: var(--color-tertiary);
+        }
+
+        .beauty-experience {
+            background-color: var(--color-primary);
+            color: var(--color-tertiary);
+            padding: 100px 0;
+        }
+
+        .beauty-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .beauty-image {
+            flex: 1;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .beauty-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .beauty-text {
+            flex: 1;
+        }
+
+        .beauty-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--color-secondary);
+        }
+
+        .beauty-description {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-icon {
+            font-size: 24px;
+            color: var(--color-secondary);
+        }
+
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            z-index: 1001;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .cart-modal.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .close-cart {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--color-text-light);
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 600;
+        }
+
+        .cart-item-price {
+            color: var(--color-secondary);
+        }
+
+        .cart-item-remove {
+            cursor: pointer;
+            color: var(--color-text-light);
+        }
+
+        .cart-total {
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .checkout-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+            text-align: center;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .checkout-button:hover {
+            background-color: var(--color-primary);
+            color: var(--color-secondary);
+        }
+
+        .beauty-tips {
+            padding: 100px 0;
+            background-color: #f9f9f9;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .tip-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .tip-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .tip-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .tip-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .tip-content {
+            padding: 20px;
+        }
+
+        .tip-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--color-primary);
+        }
+
+        .tip-description {
+            font-size: 14px;
+            color: var(--color-text-light);
+            margin-bottom: 15px;
+        }
+
+        .read-more {
+            color: var(--color-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .read-more:hover {
+            color: var(--color-primary);
+        }
+
+        .newsletter {
+            background-color: var(--color-secondary);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .newsletter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: var(--color-primary);
+            margin-bottom: 20px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            flex-grow: 1;
+            padding: 15px;
+            border: none;
+            font-size: 16px;
+        }
+
+        .newsletter-button {
+            background-color: var(--color-primary);
+            color: var(--color-tertiary);
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-button:hover {
+            background-color: var(--color-tertiary);
+            color: var(--color-primary);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 48px;
+            }
+
+            .beauty-content {
+                flex-direction: column;
+            }
+
+            .beauty-image,
+            .beauty-text {
+                flex: auto;
+            }
+
+            .cart-modal {
+                width: 100%;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-input,
+            .newsletter-button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        footer {
+            background-color: var(--color-primary);
+            color: var(--color-tertiary);
+            padding: 50px 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--color-secondary);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: var(--color-tertiary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--color-secondary);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">ShopElite</a>
+                <nav class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="e.html" class="nav-link">Electronics</a>
+                    <a href="f.html" class="nav-link">Furniture</a>
+                    <a href="bp.html" class="nav-link">Beauty</a>
+                    <a href="b&a.html" class="nav-link">Clothing</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+     <section class="hero">
+            <div class="container hero-wrapper">
+              <div class="hero-content">
+                <h1 class="hero-title">Discover Your Beauty</h1>
+                <p class="hero-subtitle">Indulge in luxury skincare and cosmetics for a radiant you.</p>
+                <a href="#featured-products" class="cta-button">Shop Now</a>
+              </div>
+              <div class="hero-video">
+                <video id="video-canvas" autoplay muted loop>
+                  <source src="7291977-uhd_3840_2160_25fps.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </section>
+        <section class="featured-products">
+            <div class="container">
+                <h2 class="section-title">Trending Beauty Products</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="pexels-karolina-grabowska-4202325 (1).jpg" alt="Luxury Serum">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Radiance Boost Serum</h3>
+                            <p class="product-price">$129.99</p>
+                            <a href="#" class="add-to-cart">Add to Cart</a>
+                        </div>
+                        <div class="product-overlay">
+                            <a href="#" class="quick-view">Quick View</a>
+                            <a href="#" class="add-to-wishlist">Add to Wishlist</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="pexels-nana-petrova-1460873293-28959838.jpg" alt="Premium Foundation">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Flawless Finish Foundation</h3>
+                            <p class="product-price">$79.99</p>
+                            <a href="#" class="add-to-cart">Add to Cart</a>
+                        </div>
+                        <div class="product-overlay">
+                            <a href="#" class="quick-view">Quick View</a>
+                            <a href="#" class="add-to-wishlist">Add to Wishlist</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="pexels-valeriya-965990.jpg" alt="Luxury Fragrance">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Ethereal Bloom Perfume</h3>
+                            <p class="product-price">$199.99</p>
+                            <a href="#" class="add-to-cart">Add to Cart</a>
+                        </div>
+                        <div class="product-overlay">
+                            <a href="#" class="quick-view">Quick View</a>
+                            <a href="#" class="add-to-wishlist">Add to Wishlist</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="pexels-n-voitkevich-8467970.jpg" alt="Hair Treatment">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Silk Infusion Hair Mask</h3>
+                            <p class="product-price">$89.99</p>
+                            <a href="#" class="add-to-cart">Add to Cart</a>
+                        </div>
+                        <div class="product-overlay">
+                            <a href="#" class="quick-view">Quick View</a>
+                            <a href="#" class="add-to-wishlist">Add to Wishlist</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="beauty-experience">
+            <div class="container">
+                <div class="beauty-content">
+                    <div class="beauty-image">
+                        <img src="pexels-rdne-6724316.jpg" alt="Luxury Beauty Experience">
+                    </div>
+                    <div class="beauty-text">
+                        <h2 class="beauty-title">Elevate Your Beauty Routine</h2>
+                        <p class="beauty-description">Experience the pinnacle of beauty with our curated selection of premium products. Our luxurious formulations combine cutting-edge science with nature's finest ingredients to reveal your most radiant self.</p>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <i class="fas fa-leaf feature-icon"></i>
+                                <span>Natural Ingredients</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-flask feature-icon"></i>
+                                <span>Advanced Formulas</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-heart feature-icon"></i>
+                                <span>Cruelty-Free</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-recycle feature-icon"></i>
+                                <span>Sustainable Packaging</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="beauty-tips">
+            <div class="container">
+                <h2 class="section-title">Beauty Tips & Trends</h2>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <div class="tip-image">
+                            <img src="pexels-rdne-6724305.jpg" alt="Skincare Routine">
+                        </div>
+                        <div class="tip-content">
+                            <h3 class="tip-title">Perfect Your Skincare Routine</h3>
+                            <p class="tip-description">Discover the essential steps for a glowing complexion and learn how to customize your routine for your skin type.</p>
+                            <a href="#" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-image">
+                            <img src="pexels-mart-production-7290089.jpg" alt="Makeup Trends">
+                        </div>
+                        <div class="tip-content">
+                            <h3 class="tip-title">Summer Makeup Trends</h3>
+                            <p class="tip-description">Get inspired by the hottest makeup looks for the season and learn how to recreate them with our step-by-step guides.</p>
+                            <a href="#" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-image">
+                            <img src="pexels-element5-973402.jpg" alt="Hair Care">
+                        </div>
+                        <div class="tip-content">
+                            <h3 class="tip-title">Secrets to Healthy Hair</h3>
+                            <p class="tip-description">Unlock the secrets to luscious, healthy hair with our expert tips on care, styling, and nourishment.</p>
+                            <a href="#" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="newsletter">
+            <div class="container">
+                <h2 class="newsletter-title">Join the Beauty Elite</h2>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Enter your email" required>
+                    <button type="submit" class="newsletter-button">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Shop Categories</h3>
+                    <ul>
+                        <li><a href="#">Skincare</a></li>
+                        <li><a href="#">Makeup</a></li>
+                        <li><a href="#">Fragrance</a></li>
+                        <li><a href="#">Hair Care</a></li>
+                        <li><a href="#">Tools & Accessories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Beauty Consultation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>About ShopElite Beauty</h3>
+                    <ul>
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Ingredients</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="cart-modal">
+        <div class="cart-header">
+            <h3>Your Shopping Bag</h3>
+            <span class="close-cart">&times;</span>
+        </div>
+        <div class="cart-items">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        <div class="cart-total">
+            Total: $<span id="cart-total-amount">0.00</span>
+        </div>
+        <a href="#" class="checkout-button">Proceed to Checkout</a>
+    </div>
+
+    <script>
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.backgroundColor = 'rgba(26, 26, 26, 0.9)';
+            } else {
+                header.style.backgroundColor = 'var(--color-primary)';
+            }
+        });
+
+        // Cart functionality
+        const cartModal = document.querySelector('.cart-modal');
+        const closeCart = document.querySelector('.close-cart');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        const cartItems = document.querySelector('.cart-items');
+        const cartTotalAmount = document.getElementById('cart-total-amount');
+        let cartTotal = 0;
+
+        // Open cart modal
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const productCard = this.closest('.product-card');
+                const productName = productCard.querySelector('.product-title').textContent;
+                const productPrice = parseFloat(productCard.querySelector('.product-price').textContent.replace('$', ''));
+                const productImage = productCard.querySelector('.product-image img').src;
+
+                addToCart(productName, productPrice, productImage);
+                cartModal.classList.add('active');
+            });
+        });
+
+        // Close cart modal
+        closeCart.addEventListener('click', () => {
+            cartModal.classList.remove('active');
+        });
+
+        // Add item to cart
+        function addToCart(name, price, image) {
+            const cartItem = document.createElement('div');
+            cartItem.classList.add('cart-item');
+            cartItem.innerHTML = `
+                <img src="${image}" alt="${name}" class="cart-item-image">
+                <div class="cart-item-details">
+                    <h4 class="cart-item-title">${name}</h4>
+                    <p class="cart-item-price">$${price.toFixed(2)}</p>
+                </div>
+                <span class="cart-item-remove">&times;</span>
+            `;
+
+            cartItems.appendChild(cartItem);
+            updateCartTotal(price);
+
+            // Remove item from cart
+            cartItem.querySelector('.cart-item-remove').addEventListener('click', () => {
+                cartItem.remove();
+                updateCartTotal(-price);
+            });
+        }
+
+        // Update cart total
+        function updateCartTotal(amount) {
+            cartTotal += amount;
+            cartTotalAmount.textContent = cartTotal.toFixed(2);
+        }
+
+        // Quick view functionality (you can expand this to show a modal with more product details)
+        const quickViewButtons = document.querySelectorAll('.quick-view');
+        quickViewButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const productName = this.closest('.product-card').querySelector('.product-title').textContent;
+                alert(`Quick view for ${productName}`);
+            });
+        });
+
+        // Add to wishlist functionality (you can expand this to actually save items to a wishlist)
+        const wishlistButtons = document.querySelectorAll('.add-to-wishlist');
+        wishlistButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const productName = this.closest('.product-card').querySelector('.product-title').textContent;
+                alert(`${productName} added to wishlist`);
+            });
+        });
+    </script>
+</body>
+</html>
